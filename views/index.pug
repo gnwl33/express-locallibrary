@@ -1,19 +1,22 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #[em Local Library]
-
-  h1 Dynamic content
+  div(class='title')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js')
+  script
+    include leon.js
+  script
+    include leonsans.js
 
   if error
-    p Error getting dynamic content.
+    p Error getting content.
   else
-    p The library has the following record counts:
+    div(class='records')
+      h2(style={margin: '20px 11px 14px'}) Summary of Records:
 
-    ul
-      li #[strong Books:] !{data.book_count}
-      li #[strong Copies:] !{data.book_instance_count}
-      li #[strong Copies available:] !{data.book_instance_available_count} 
-      li #[strong Authors:] !{data.author_count}
-      li #[strong Genres:] !{data.genre_count}
+      ul(style={margin: '0 11px'})
+        li #[strong Books:] !{data.book_count}
+        li #[strong Copies:] !{data.book_instance_count}
+        li #[strong Copies available:] !{data.book_instance_available_count} 
+        li #[strong Authors:] !{data.author_count}
+        li #[strong Genres:] !{data.genre_count}

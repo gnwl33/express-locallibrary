@@ -4,35 +4,41 @@ var moment = require('moment');
 
 var Schema = mongoose.Schema;
 
-var AuthorSchema = new Schema(
-  {
-    first_name: {type: String, required: true, max: 100},
-    family_name: {type: String, required: true, max: 100},
-    date_of_birth: {type: Date},
-    date_of_death: {type: Date},
-  }
-);
+var AuthorSchema = new Schema({
+  first_name: { type: String, required: true, max: 100 },
+  family_name: { type: String, required: true, max: 100 },
+  date_of_birth: { type: Date },
+  date_of_death: { type: Date },
+});
 
 // Virtual for author's full name
-AuthorSchema
-.virtual('name')
-.get(function () {
+AuthorSchema.virtual('name').get(function() {
   return this.family_name + ', ' + this.first_name;
 });
 
 // Virtual for author's lifespan
-AuthorSchema
-.virtual('lifespan')
-.get(function () {
-  var bdate = this.date_of_birth ? moment(this.date_of_birth).format('YYYY/MM/DD') : '';
-  var ddate = this.date_of_death ? moment(this.date_of_death).format('YYYY/MM/DD') : '';
-  return bdate + ' - ' + ddate;
+AuthorSchema.virtual('lifespan').get(function() {
+  var bdate = this.date_of_birth
+    ? moment(this.date_of_birth).format('YYYY/MM/DD')
+    : '';
+  var ddate = this.date_of_death
+    ? moment(this.date_of_death).format('YYYY/MM/DD')
+    : '';
+  if (bdate && ddate === '') ddate = 'present';
+  if (bdate) return bdate + ' - ' + ddate;
+  else return '';
+});
+
+AuthorSchema.virtual('dob_yyyy-mm-dd').get(function() {
+  return moment(this.date_of_birth).format('YYYY-MM-DD');
+});
+
+AuthorSchema.virtual('dod_yyyy-mm-dd').get(function() {
+  return moment(this.date_of_death).format('YYYY-MM-DD');
 });
 
 // Virtual for author's URL
-AuthorSchema
-.virtual('url')
-.get(function () {
+AuthorSchema.virtual('url').get(function() {
   return '/catalog/author/' + this._id;
 });
 

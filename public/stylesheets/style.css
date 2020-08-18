@@ -1,5 +1,48 @@
+body {
+  font-size: 16px;
+}
+
+li {
+  margin-bottom: 5px;
+}
+
+.wrapper {
+  display: flex;
+  height: 100vh;
+}
+
 .sidebar-nav {
-    margin-top: 20px;
-    padding: 0;
-    list-style: none;
+  height: 100%;
+  list-style: none;
+  background: #464646;
+  padding: 23px 30px;
+  width: 240px;
+}
+
+.sidebar-nav a {
+  color: white;
+}
+
+.content {
+  padding-left: 23px;
+}
+
+.title {
+  margin-top: 10px;
+}
+
+.records {
+  opacity: 0;
+  animation: records 2s ease 1.8s;
+  animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+
+@keyframes records {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

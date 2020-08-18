@@ -1,5 +1,5 @@
 {
-  "name": "express-locallibrary-tutorial",
+  "name": "express-locallibrary",
   "version": "0.0.0",
   "engines": {
     "node": "10.16.0"
@@ -17,11 +17,21 @@
     "express-validator": "^6.1.1",
     "http-errors": "~1.6.3",
     "moment": "^2.24.0",
-    "mongoose": "^5.6.8",
+    "mongoose": "^5.10.0",
     "morgan": "~1.9.1",
     "pug": "2.0.0-beta11"
   },
   "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.11.1",
+    "@babel/preset-env": "^7.11.0",
+    "@babel/preset-react": "^7.10.4",
+    "eslint": "^6.8.0",
     "nodemon": "^1.19.1"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-react"
+    ]
   }
 }
